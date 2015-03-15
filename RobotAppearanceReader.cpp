@@ -48,8 +48,8 @@ int main(int argc, char * argv[])
     out.open(argv[2]);
 
     out<<"{";
-    out<<"\"name\":"<<pAI->GetName()<<",";
-    out<<"\"author\":"<<pAI->GetAuthor()<<",";
+    out<<"\"name\":\""<<pAI->GetName()<<"\",";
+    out<<"\"author\":\""<<pAI->GetAuthor()<<"\",";
     out<<"\"weapon\":"<<weapon<<",";
     out<<"\"engine\":"<<engine<<",";
     out<<"\"wr\":"<<wr<<",";
