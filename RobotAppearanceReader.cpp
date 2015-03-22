@@ -1,6 +1,8 @@
 #include <dlfcn.h>
 #include <iostream>
 #include <fstream>
+#include <cstring>
+#include <streambuf>
 #include "sys/RobotAI_Interface.h"
 
 using namespace std;
@@ -44,24 +46,39 @@ int main(int argc, char * argv[])
     //output json
     //
 
+    bool tofile = true;
+    if(strcmp(argv[2],"stdout") == 0)
+    {
+        tofile = false;
+    }
+
+
     ofstream out;
-    out.open(argv[2]);
+    streambuf * x = NULL;
+    if(tofile)
+    {
+        out.open(argv[2]);
+        x = cout.rdbuf(out.rdbuf());
+    }
 
-    out<<"{";
-    out<<"\"name\":\""<<pAI->GetName()<<"\",";
-    out<<"\"author\":\""<<pAI->GetAuthor()<<"\",";
-    out<<"\"weapon\":"<<weapon<<",";
-    out<<"\"engine\":"<<engine<<",";
-    out<<"\"wr\":"<<wr<<",";
-    out<<"\"wg\":"<<wg<<",";
-    out<<"\"wb\":"<<wb<<",";
-    out<<"\"er\":"<<er<<",";
-    out<<"\"eg\":"<<eg<<",";
-    out<<"\"eb\":"<<eb;
-    out<<"}";
+    cout<<"{";
+    cout<<"\"name\":\""<<pAI->GetName()<<"\",";
+    cout<<"\"author\":\""<<pAI->GetAuthor()<<"\",";
+    cout<<"\"weapon\":"<<weapon<<",";
+    cout<<"\"engine\":"<<engine<<",";
+    cout<<"\"wr\":"<<wr<<",";
+    cout<<"\"wg\":"<<wg<<",";
+    cout<<"\"wb\":"<<wb<<",";
+    cout<<"\"er\":"<<er<<",";
+    cout<<"\"eg\":"<<eg<<",";
+    cout<<"\"eb\":"<<eb;
+    cout<<"}";
 
-
-    out.close();
+    if(tofile)
+    {
+        cout.rdbuf(x);
+        out.close();
+    }
 
 
 

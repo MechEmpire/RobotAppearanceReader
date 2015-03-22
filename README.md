@@ -5,13 +5,15 @@ By 狄学长
 
 -----------------------
 
-读取 libRobotAI.so 的小程序，生成JSON格式的文本文件，包含该机甲AI的外观信息。
+读取 libRobotAI.so 的小程序，生成JSON格式的文本文件，或输出到标准输出流，包含该机甲AI的外观信息。
 
 make:
 
     make all
 
 run:
+
+    ./RobotAppearanceReader ./libmyAI.so stdout
 
     ./RobotAppearanceReader ./libmyAI.so ./appearance.json
 
